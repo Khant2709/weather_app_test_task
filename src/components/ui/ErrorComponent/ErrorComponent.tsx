@@ -5,9 +5,7 @@ interface ErrorComponentProps {
 }
 
 const ErrorComponent: React.FC<ErrorComponentProps> = ({error}) => (
-    <div role="alert" className={`text-xl text-red-500/75 text-center 
-                       md:text-2xl `}
-    >
+    <div role="alert" className={`text-xl text-red-500/75 text-center md:text-2xl `}>
         {error || "Произошла ошибка"}
     </div>
 );

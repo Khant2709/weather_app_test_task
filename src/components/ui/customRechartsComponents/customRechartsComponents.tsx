@@ -16,6 +16,25 @@ interface CustomLineProps {
     key: number | string;
 }
 
+interface Data {
+    dt: number;
+    temp?: number;
+    feelsLike?: number;
+    humidity?: number;
+    windSpeed?: number;
+    windGust?: number;
+    windDeg?: number;
+}
+
+interface CustomTooltipProps {
+    categoryChart: CATEGORY_CHART;
+    payload?: { payload: Data }[];
+}
+
+interface ContentProps {
+    data: Data;
+}
+
 export const customLine: React.FC<CustomLineProps> = ({
                                                           dataKey,
                                                           hasLabel,
@@ -57,28 +76,11 @@ export const customYAxis: React.FC<CustomYAxisProps> = ({
                 return [min - (minResize || 0), max + (maxResize || 0)]
             }
         }}>
-            <Label
-                value={labelValue}
-                position="right"
-            />
+            <Label value={labelValue} position="right"/>
         </YAxis>
     )
 };
 
-interface Data {
-    dt: number;
-    temp?: number;
-    feelsLike?: number;
-    humidity?: number;
-    windSpeed?: number;
-    windGust?: number;
-    windDeg?: number;
-}
-
-interface CustomTooltipProps {
-    categoryChart: CATEGORY_CHART;
-    payload?: { payload: Data }[];
-}
 
 export const customTooltip: React.FC<CustomTooltipProps> = ({categoryChart}) => {
     return (
@@ -87,7 +89,7 @@ export const customTooltip: React.FC<CustomTooltipProps> = ({categoryChart}) => 
                 const data = payload[0].payload;
                 const {time} = getDateAndTime(data.dt);
                 return (
-                    <div className={'p-4 text-white bg-[#6167A11A]'}>
+                    <div className={'p-4 text-white bg-primary_20'}>
                         <p>{time}</p>
                         {data && renderContentTooltip({categoryChart, data})}
                     </div>
@@ -111,10 +113,6 @@ const renderContentTooltip: React.FC<{ categoryChart: CATEGORY_CHART, data: Data
     }
 
 };
-
-interface ContentProps {
-    data: Data;
-}
 
 const ContentTemp: React.FC<ContentProps> = ({data}) => (
     <>

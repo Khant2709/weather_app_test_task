@@ -1,9 +1,7 @@
 import React from "react";
 
 const PreloaderComponent: React.FC = () => (
-    <p className={`text-xl text-white/50 text-center
-                        md:text-2xl`}
-    >
+    <p className={`text-xl text-white/50 text-center animate-pulse md:text-2xl`}>
         Ищем город и проверяем погоду...
     </p>
 );

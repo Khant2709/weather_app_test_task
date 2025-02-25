@@ -7,6 +7,12 @@ interface Category {
     type: CATEGORY_CHART;
 }
 
+interface HeaderChartComponentProps {
+    cityName: string;
+    categoryChart: CATEGORY_CHART;
+    handleChangeCategory: (type: CATEGORY_CHART) => void;
+}
+
 const category: Category[] = [
     {
         id: 0,
@@ -23,34 +29,23 @@ const category: Category[] = [
         name: 'Осадки',
         type: CATEGORY_CHART.RAINFALL,
     }
-]
-
-interface HeaderChartComponentProps {
-    cityName: string;
-    categoryChart: CATEGORY_CHART;
-    handleChangeCategory: (type: CATEGORY_CHART) => void;
-}
+];
 
 const HeaderChartComponent: React.FC<HeaderChartComponentProps> = ({cityName, categoryChart, handleChangeCategory}) => {
     return (
-        <section className={`flex flex-col justify-normal items-start gap-8
-                             md:flex-row md:justify-between md:items-end `}
-        >
-            <h2 className={`text-3xl tracking-widest ml-0 
-                            md:text-4xl xl:ml-16`}
-            >
+        <section
+            className={`flex flex-col justify-normal items-start gap-8 md:flex-row md:justify-between md:items-end `}>
+            <h2 className={`text-3xl tracking-widest ml-0 md:text-4xl xl:ml-16`}>
                 {cityName}
             </h2>
-            <nav className={`text-base flex gap-2 bg-[#6167A166] rounded-2xl 
-                            md:text-xl`}
-            >
-                {category.map(el => {
-                    const isActive = categoryChart === el.type;
-                    return <button key={el.id}
-                                   onClick={() => handleChangeCategory(el.type)}
-                                   className={`rounded-2xl cursor-pointer hover:bg-[#6167A1CC] px-4 py-2 
-                              ${isActive ? 'bg-[#6167A1CC]' : ''}`}>
-                        {el.name}
+            <nav className={`text-base flex gap-2 bg-primary_40 rounded-2xl md:text-xl`}>
+                {category.map(({id, type, name}) => {
+                    const isActive = categoryChart === type;
+                    return <button key={id}
+                                   onClick={() => handleChangeCategory(type)}
+                                   className={`rounded-2xl cursor-pointer hover:bg-primary_80 px-4 py-2 ${isActive ? 'bg-primary_80' : ''}`}
+                    >
+                        {name}
                     </button>
                 })}
             </nav>

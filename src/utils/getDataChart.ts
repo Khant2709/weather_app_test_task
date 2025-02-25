@@ -8,6 +8,21 @@ interface YAxisData {
     maxResize: number;
 }
 
+interface LineData {
+    dataKey: string;
+    description: string;
+    hasLabel: boolean;
+    lineColor: string;
+    labelColor: string | null;
+    labelSize: number | null;
+}
+
+interface DataChart {
+    category: CATEGORY_CHART;
+    yaxisData: YAxisData;
+    lineData: LineData[];
+}
+
 const createYAxis = (
     dataKey: string,
     labelValue: string,
@@ -17,15 +32,6 @@ const createYAxis = (
 ): YAxisData => {
     return {dataKey, labelValue, isInvariable, minResize, maxResize};
 };
-
-interface LineData {
-    dataKey: string;
-    description: string;
-    hasLabel: boolean;
-    lineColor: string;
-    labelColor: string | null;
-    labelSize: number | null;
-}
 
 const createLine = (
     dataKey: string,
@@ -37,12 +43,6 @@ const createLine = (
 ): LineData => {
     return {dataKey, description, hasLabel, lineColor, labelColor, labelSize};
 };
-
-interface DataChart {
-    category: CATEGORY_CHART;
-    yaxisData: YAxisData;
-    lineData: LineData[];
-}
 
 export const getDataChart = (categoryChart: CATEGORY_CHART): DataChart | undefined => {
     switch (categoryChart) {

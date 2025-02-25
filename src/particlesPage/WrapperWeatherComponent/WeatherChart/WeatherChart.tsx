@@ -59,6 +59,9 @@ interface WeatherChartProps {
     dataChart: DataChart;
 }
 
+interface DescriptionComponentProps {
+    lineData: LineData[];
+}
 
 const WeatherChart: React.FC<WeatherChartProps> = ({data, dataChart}) => {
     const {yaxisData, lineData, category} = dataChart;
@@ -118,16 +121,12 @@ const WeatherChart: React.FC<WeatherChartProps> = ({data, dataChart}) => {
 
 export default WeatherChart;
 
-interface DescriptionComponentProps {
-    lineData: LineData[];
-}
-
 const DescriptionComponent: React.FC<DescriptionComponentProps> = ({lineData}) => (
     <div className={'w-full flex flex-col items-end gap-2'}>
-        {lineData.map((line, i) => {
+        {lineData.map(({description, lineColor}, i) => {
             return <div key={`line_${i}`} className={'flex items-center gap-4'}>
-                <p>{line.description}</p>
-                <div className={'w-[2rem] h-[2px]'} style={{backgroundColor: line.lineColor}}/>
+                <p>{description}</p>
+                <div className={'w-[2rem] h-[2px]'} style={{backgroundColor: lineColor}}/>
             </div>
         })}
     </div>

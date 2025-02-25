@@ -4,13 +4,9 @@ import WrapperWeatherComponent from "./particlesPage/WrapperWeatherComponent/Wra
 
 function App() {
     return (
-        <main className={`w-full min-h-screen bg-slate-950
-                          md:gap-16`}
-        >
+        <main className={`w-full min-h-screen bg-slate-950 md:gap-16`}>
             <Header/>
-            <section className={`max-w-[96rem] mx-auto flex flex-col gap-8 pb-16 
-                                    md:gap-16`}
-            >
+            <section className={`max-w-[96rem] mx-auto flex flex-col gap-8 pb-16 md:gap-16`}>
                 <DescriptionComponent/>
                 <WrapperWeatherComponent/>
             </section>
